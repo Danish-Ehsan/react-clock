@@ -7,8 +7,8 @@ function App() {
   const [count, setCount] = useState(0);
   const [time, setTime] = useState(new Date());
   const [timeRunning, setTimeRunning] = useState(true);
-
   const timeInterval = useRef(null);
+  const timeHue = time.getSeconds() * (360 / 60);
 
   useEffect(() => {
     console.log('effect running');
@@ -26,8 +26,7 @@ function App() {
 
   return (
     <>
-      {/* <h1>Practice</h1> */}
-      <h2 style={{color: time.getSeconds() > 30 ? 'blue' : 'green' }}>Time: {time.toLocaleTimeString()}</h2>
+      <h2 style={{color: `hsl(${timeHue}, 50%, 50%)` }}>Time: {time.toLocaleTimeString()}</h2>
       <button 
         style={{marginTop: '10px'}}
         onClick={() => {
