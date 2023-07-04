@@ -1,21 +1,20 @@
 import { useEffect, useState, useRef } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.scss";
+import Clock from "components/Clock";
+import "styles/App.scss";
 
 function App() {
     const [count, setCount] = useState(0);
-    const [time, setTime] = useState(new Date());
+    const [date, setDate] = useState(new Date());
     const [timeRunning, setTimeRunning] = useState(true);
     const timeInterval = useRef(null);
-    const timeHue = time.getSeconds() * (360 / 60);
+    const timeHue = date.getSeconds() * (360 / 60);
 
     useEffect(() => {
         console.log("effect running");
 
         if (timeRunning) {
             timeInterval.current = setInterval(() => {
-                setTime(new Date());
+                setDate(new Date());
             }, 1000);
         }
 
@@ -26,8 +25,9 @@ function App() {
 
     return (
         <>
+            <Clock date={date} />
             <h2 style={{ color: `hsl(${timeHue}, 50%, 50%)` }}>
-                Time: {time.toLocaleTimeString()}
+                Time: {date.toLocaleTimeString()}
             </h2>
             <button
                 style={{ marginTop: "10px" }}
