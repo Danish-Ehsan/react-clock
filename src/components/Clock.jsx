@@ -7,19 +7,20 @@ export default function Clock({ date }) {
     const secondsDeg = date.getSeconds() * (360 / 60);
 
     return (
-        <div class="clock">
+        <div className="clock">
+            <div className="clock__bkg"></div>
             <div
-                class="clock__hours"
+                className="clock__hours"
                 style={{ transform: `translateY(-40%) rotate(${hoursDeg}deg)` }}
             ></div>
             <div
-                class="clock__minutes"
+                className="clock__minutes"
                 style={{
                     transform: `translateY(-40%) rotate(${minutesDeg}deg)`
                 }}
             ></div>
             <div
-                class="clock__seconds"
+                className="clock__seconds"
                 style={{
                     transform: `translateY(-40%) rotate(${secondsDeg}deg)`
                 }}
