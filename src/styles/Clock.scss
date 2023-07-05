@@ -1,0 +1,95 @@
+.clock {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background: radial-gradient(circle at center, #242424 63%, transparent 63%),
+        conic-gradient(
+            white 0deg 1deg,
+            #242424 1deg 29deg,
+            white 29deg 31deg,
+            #242424 31deg 59deg,
+            white 59deg 61deg,
+            #242424 61deg 89deg,
+            white 89deg 91deg,
+            #242424 91deg 119deg,
+            white 119deg 121deg,
+            #242424 121deg 149deg,
+            white 149deg 151deg,
+            #242424 151deg 179deg,
+            white 179deg 181deg,
+            #242424 181deg 209deg,
+            white 209deg 211deg,
+            #242424 211deg 239deg,
+            white 239deg 241deg,
+            #242424 241deg 269deg,
+            white 269deg 271deg,
+            #242424 271deg 299deg,
+            white 299deg 301deg,
+            #242424 301deg 329deg,
+            white 329deg 331deg,
+            #242424 331deg 359deg,
+            white 359deg 360deg
+        );
+
+    background-image: -moz-radial-gradient(
+            circle at center,
+            #242424 63%,
+            transparent 63%
+        ),
+        -moz-conic-gradient(white 0deg 1deg, #242424 1deg 29deg, white 29deg
+                    31deg, #242424 31deg 59deg, white 59deg 61deg, #242424 61deg
+                    89deg, white 89deg 91deg, #242424 91deg 119deg, white 119deg
+                    121deg, #242424 121deg 149deg, white 149deg 151deg, #242424
+                    151deg 179deg, white 179deg 181deg, #242424 181deg 209deg, white
+                    209deg 211deg, #242424 211deg 239deg, white 239deg 241deg, #242424
+                    241deg 269deg, white 269deg 271deg, #242424 271deg 299deg, white
+                    299deg 301deg, #242424 301deg 329deg, white 329deg 331deg, #242424
+                    331deg 359deg, white 359deg 360deg);
+
+    &:after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        width: 4%;
+        height: 4%;
+        background: white;
+    }
+}
+
+.clock__hours {
+    height: 100px;
+    width: 4px;
+    position: absolute;
+    background: #8f8f8f;
+    transform: translateY(-40%);
+    transform-origin: 50% 90%;
+    clip-path: polygon(0 20%, 50% 0, 100% 20%, 100% 100%, 0% 100%);
+    transition: transform 0.2s;
+}
+
+.clock__minutes {
+    height: 120px;
+    width: 4px;
+    position: absolute;
+    background: #8f8f8f;
+    transform: translateY(-40%);
+    transform-origin: 50% 90%;
+    clip-path: polygon(0 20%, 50% 0, 100% 20%, 100% 100%, 0% 100%);
+    transition: transform 0.2s;
+}
+
+.clock__seconds {
+    height: 130px;
+    width: 2px;
+    position: absolute;
+    background: black;
+    transform: translateY(-40%);
+    transform-origin: 50% 90%;
+    transition: transform 0.2s;
+}
