@@ -25,7 +25,7 @@ function App() {
 
     return (
         <>
-            <Clock date={date} />
+            <Clock date={date} timeHue={timeHue} />
             <h2 style={{ color: `hsl(${timeHue}, 50%, 50%)` }}>
                 Time: {date.toLocaleTimeString()}
             </h2>
