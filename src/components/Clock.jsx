@@ -1,18 +1,44 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import "styles/Clock.scss";
 
 export default function Clock({ date, timeHue }) {
     const clockRef = useRef(null);
+    const secondsRotations = useRef(0);
+    const minutesRotations = useRef(0);
+    const hoursRotations = useRef(0);
+
+    const secondsDeg =
+        secondsRotations.current * 360 + date.getSeconds() * (360 / 60);
+    const minutesDeg =
+        minutesRotations.current * 360 + date.getMinutes() * (360 / 60);
     const hoursDeg =
-        date.getHours() * (360 / 12) + date.getMinutes() * (360 / (60 * 12));
-    const minutesDeg = date.getMinutes() * (360 / 60);
-    const secondsDeg = date.getSeconds() * (360 / 60);
+        hoursRotations.current * 720 +
+        date.getHours() * (360 / 12) +
+        date.getMinutes() * (360 / (60 * 12));
 
     useEffect(() => {
         const clockColor = clockRef.current.style.setProperty(
             "--bg-color",
             `hsl(${timeHue}, 30%, 30%)`
         );
+
+        //When clock needles are completing a full circle, the css rotation degrees need to advance instead of resetting to 0 so the needle doesn't go backwards a full rotation
+        //This needs to happen after the render so it doesn't prematurely set the rotation ahead.
+        if (date.getSeconds() === 59) {
+            secondsRotations.current++;
+        }
+
+        if (date.getMinutes() === 59 && date.getSeconds() === 59) {
+            minutesRotations.current++;
+        }
+
+        if (
+            date.getHours() === 23 &&
+            date.getMinutes() === 59 &&
+            date.getSeconds() === 59
+        ) {
+            hoursRotations.current++;
+        }
     });
 
     return (
