@@ -19,7 +19,7 @@ export default function Clock({ date, timeHue }) {
     useEffect(() => {
         const clockColor = clockRef.current.style.setProperty(
             "--bg-color",
-            `hsl(${timeHue}, 30%, 30%)`
+            `hsl(${timeHue}, 20%, 20%)`
         );
 
         //When clock needles are completing a full circle, the css rotation degrees need to advance instead of resetting to 0 so the needle doesn't go backwards a full rotation

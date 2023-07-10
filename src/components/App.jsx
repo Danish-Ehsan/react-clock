@@ -26,7 +26,7 @@ function App() {
     return (
         <>
             <Clock date={date} timeHue={timeHue} />
-            <h2 style={{ color: `hsl(${timeHue}, 50%, 50%)` }}>
+            <h2 style={{ color: `hsl(${timeHue}, 30%, 60%)` }}>
                 Time: {date.toLocaleTimeString()}
             </h2>
             <button
