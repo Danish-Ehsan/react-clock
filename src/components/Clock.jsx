@@ -56,7 +56,7 @@ export default function Clock({
                         setAlarmRinging(false);
                     }}
                 >
-                    Snooze
+                    Dismiss
                 </button>
             )}
             <div
