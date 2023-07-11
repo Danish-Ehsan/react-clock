@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "styles/Clock.scss";
 
-export default function Clock({ date, timeHue }) {
+export default function Clock({ date, timeHue, alarmRinging }) {
     const clockRef = useRef(null);
     const secondsRotations = useRef(0);
     const minutesRotations = useRef(0);

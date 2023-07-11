@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import Clock from "components/Clock";
+import Alarms from "components/Alarms";
 import "styles/App.scss";
 
 function App() {
@@ -8,6 +9,21 @@ function App() {
     const [timeRunning, setTimeRunning] = useState(true);
     const timeInterval = useRef(null);
     const timeHue = date.getSeconds() * (360 / 60);
+    const [alarms, setAlarms] = useState([]);
+    const [alarmRinging, setAlarmRinging] = useState(false);
+
+    //console.log(alarms);
+    console.log("alarmRunning", alarmRinging);
+
+    alarms.forEach((e) => {
+        if (
+            !alarmRinging &&
+            e.getHours() === date.getHours() &&
+            e.getMinutes() === date.getMinutes()
+        ) {
+            setAlarmRinging(true);
+        }
+    });
 
     useEffect(() => {
         console.log("effect running");
@@ -25,7 +41,7 @@ function App() {
 
     return (
         <>
-            <Clock date={date} timeHue={timeHue} />
+            <Clock date={date} timeHue={timeHue} alarmRinging={alarmRinging} />
             <h2 style={{ color: `hsl(${timeHue}, 30%, 60%)` }}>
                 Time: {date.toLocaleTimeString()}
             </h2>
@@ -47,6 +63,7 @@ function App() {
             >
                 Resume Time
             </button>
+            <Alarms alarms={alarms} setAlarms={setAlarms} />
         </>
     );
 }
