@@ -41,7 +41,12 @@ function App() {
 
     return (
         <>
-            <Clock date={date} timeHue={timeHue} alarmRinging={alarmRinging} />
+            <Clock
+                date={date}
+                timeHue={timeHue}
+                alarmRinging={alarmRinging}
+                setAlarmRinging={setAlarmRinging}
+            />
             <h2 style={{ color: `hsl(${timeHue}, 30%, 60%)` }}>
                 Time: {date.toLocaleTimeString()}
             </h2>

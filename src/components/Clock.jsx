@@ -1,7 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import "styles/Clock.scss";
 
-export default function Clock({ date, timeHue, alarmRinging }) {
+export default function Clock({
+    date,
+    timeHue,
+    alarmRinging,
+    setAlarmRinging
+}) {
     const clockRef = useRef(null);
     const secondsRotations = useRef(0);
     const minutesRotations = useRef(0);
@@ -18,8 +23,8 @@ export default function Clock({ date, timeHue, alarmRinging }) {
 
     useEffect(() => {
         const clockColor = clockRef.current.style.setProperty(
-            "--bg-color",
-            `hsl(${timeHue}, 20%, 20%)`
+            "--bg-hue",
+            timeHue
         );
 
         //When clock needles are completing a full circle, the css rotation degrees need to advance instead of resetting to 0 so the needle doesn't go backwards a full rotation
@@ -42,8 +47,18 @@ export default function Clock({ date, timeHue, alarmRinging }) {
     });
 
     return (
-        <div className="clock" ref={clockRef}>
-            <div className="clock__bkg"></div>
+        <div className={alarmRinging ? "clock alarm" : "clock"} ref={clockRef}>
+            {alarmRinging && (
+                <button
+                    className="clock__snooze"
+                    onClick={() => {
+                        console.log("snoozing");
+                        setAlarmRinging(false);
+                    }}
+                >
+                    Snooze
+                </button>
+            )}
             <div
                 className="clock__hours"
                 style={{ transform: `translateY(-40%) rotate(${hoursDeg}deg)` }}

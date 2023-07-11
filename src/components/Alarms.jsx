@@ -12,6 +12,13 @@ export default function Alarms({ alarms, setAlarms }) {
         );
     });
 
+    const alarmsListElement = (
+        <div className="alarms__list-cont">
+            <h2>Alarms</h2>
+            <ul className="alarms__list">{alarmsList}</ul>
+        </div>
+    );
+
     console.log("newalarm", newAlarm);
 
     return (
@@ -41,10 +48,7 @@ export default function Alarms({ alarms, setAlarms }) {
                 />
                 <button>Add</button>
             </form>
-            <div className="alarms__list-cont">
-                <h2>Alarms</h2>
-                <ul className="alarms__list">{alarmsList}</ul>
-            </div>
+            {alarms.length > 0 && alarmsListElement}
         </div>
     );
 }

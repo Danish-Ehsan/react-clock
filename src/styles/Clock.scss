@@ -1,5 +1,5 @@
 .clock {
-    --bg-hue: #242424;
+    --bg-hue: 0;
 
     position: relative;
     display: inline-flex;
@@ -13,34 +13,34 @@
     border: 4px solid white;
     background: radial-gradient(
             circle at center,
-            var(--bg-color) 63%,
+            hsl(var(--bg-hue), 20%, 20%) 63%,
             transparent 63%
         ),
         conic-gradient(
             white 0deg 1deg,
-            var(--bg-color) 1deg 29deg,
+            hsl(var(--bg-hue), 20%, 20%) 1deg 29deg,
             white 29deg 31deg,
-            var(--bg-color) 31deg 59deg,
+            hsl(var(--bg-hue), 20%, 20%) 31deg 59deg,
             white 59deg 61deg,
-            var(--bg-color) 61deg 89deg,
+            hsl(var(--bg-hue), 20%, 20%) 61deg 89deg,
             white 89deg 91deg,
-            var(--bg-color) 91deg 119deg,
+            hsl(var(--bg-hue), 20%, 20%) 91deg 119deg,
             white 119deg 121deg,
-            var(--bg-color) 121deg 149deg,
+            hsl(var(--bg-hue), 20%, 20%) 121deg 149deg,
             white 149deg 151deg,
-            var(--bg-color) 151deg 179deg,
+            hsl(var(--bg-hue), 20%, 20%) 151deg 179deg,
             white 179deg 181deg,
-            var(--bg-color) 181deg 209deg,
+            hsl(var(--bg-hue), 20%, 20%) 181deg 209deg,
             white 209deg 211deg,
-            var(--bg-color) 211deg 239deg,
+            hsl(var(--bg-hue), 20%, 20%) 211deg 239deg,
             white 239deg 241deg,
-            var(--bg-color) 241deg 269deg,
+            hsl(var(--bg-hue), 20%, 20%) 241deg 269deg,
             white 269deg 271deg,
-            var(--bg-color) 271deg 299deg,
+            hsl(var(--bg-hue), 20%, 20%) 271deg 299deg,
             white 299deg 301deg,
-            var(--bg-color) 301deg 329deg,
+            hsl(var(--bg-hue), 20%, 20%) 301deg 329deg,
             white 329deg 331deg,
-            var(--bg-color) 331deg 359deg,
+            hsl(var(--bg-hue), 20%, 20%) 331deg 359deg,
             white 359deg 360deg
         );
 
@@ -51,6 +51,82 @@
         width: 4%;
         height: 4%;
         background: white;
+    }
+
+    &.alarm {
+        animation: alarm steps(2) 1s infinite;
+    }
+}
+
+@keyframes alarm {
+    from {
+        background: radial-gradient(
+                circle at center,
+                hsl(var(--bg-hue), 20%, 20%) 63%,
+                transparent 63%
+            ),
+            conic-gradient(
+                white 0deg 1deg,
+                hsl(var(--bg-hue), 20%, 20%) 1deg 29deg,
+                white 29deg 31deg,
+                hsl(var(--bg-hue), 20%, 20%) 31deg 59deg,
+                white 59deg 61deg,
+                hsl(var(--bg-hue), 20%, 20%) 61deg 89deg,
+                white 89deg 91deg,
+                hsl(var(--bg-hue), 20%, 20%) 91deg 119deg,
+                white 119deg 121deg,
+                hsl(var(--bg-hue), 20%, 20%) 121deg 149deg,
+                white 149deg 151deg,
+                hsl(var(--bg-hue), 20%, 20%) 151deg 179deg,
+                white 179deg 181deg,
+                hsl(var(--bg-hue), 20%, 20%) 181deg 209deg,
+                white 209deg 211deg,
+                hsl(var(--bg-hue), 20%, 20%) 211deg 239deg,
+                white 239deg 241deg,
+                hsl(var(--bg-hue), 20%, 20%) 241deg 269deg,
+                white 269deg 271deg,
+                hsl(var(--bg-hue), 20%, 20%) 271deg 299deg,
+                white 299deg 301deg,
+                hsl(var(--bg-hue), 20%, 20%) 301deg 329deg,
+                white 329deg 331deg,
+                hsl(var(--bg-hue), 20%, 20%) 331deg 359deg,
+                white 359deg 360deg
+            );
+    }
+
+    to {
+        background: radial-gradient(
+                circle at center,
+                hsl(var(--bg-hue), 20%, 30%) 63%,
+                transparent 63%
+            ),
+            conic-gradient(
+                white 0deg 1deg,
+                hsl(var(--bg-hue), 20%, 30%) 1deg 29deg,
+                white 29deg 31deg,
+                hsl(var(--bg-hue), 20%, 30%) 31deg 59deg,
+                white 59deg 61deg,
+                hsl(var(--bg-hue), 20%, 30%) 61deg 89deg,
+                white 89deg 91deg,
+                hsl(var(--bg-hue), 20%, 30%) 91deg 119deg,
+                white 119deg 121deg,
+                hsl(var(--bg-hue), 20%, 30%) 121deg 149deg,
+                white 149deg 151deg,
+                hsl(var(--bg-hue), 20%, 30%) 151deg 179deg,
+                white 179deg 181deg,
+                hsl(var(--bg-hue), 20%, 30%) 181deg 209deg,
+                white 209deg 211deg,
+                hsl(var(--bg-hue), 20%, 30%) 211deg 239deg,
+                white 239deg 241deg,
+                hsl(var(--bg-hue), 20%, 30%) 241deg 269deg,
+                white 269deg 271deg,
+                hsl(var(--bg-hue), 20%, 30%) 271deg 299deg,
+                white 299deg 301deg,
+                hsl(var(--bg-hue), 20%, 30%) 301deg 329deg,
+                white 329deg 331deg,
+                hsl(var(--bg-hue), 20%, 30%) 331deg 359deg,
+                white 359deg 360deg
+            );
     }
 }
 
@@ -91,4 +167,14 @@
     transform: translateY(-40%);
     transform-origin: 50% 90%;
     transition: transform 0.35s cubic-bezier(1, 1.76, 0.54, 0.55);
+}
+
+.clock__snooze {
+    position: absolute;
+    bottom: 20%;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    font-weight: 700;
 }
