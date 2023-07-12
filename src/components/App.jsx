@@ -4,7 +4,6 @@ import Alarms from "components/Alarms";
 import "styles/App.scss";
 
 function App() {
-    const [count, setCount] = useState(0);
     const [date, setDate] = useState(new Date());
     const [timeRunning, setTimeRunning] = useState(true);
     const timeInterval = useRef(null);
