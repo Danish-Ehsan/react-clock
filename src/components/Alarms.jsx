@@ -19,7 +19,7 @@ export default function Alarms({ alarms, setAlarms }) {
         </div>
     );
 
-    console.log("newalarm", newAlarm);
+    //console.log("newalarm", newAlarm);
 
     return (
         <div className="alarms__cont">

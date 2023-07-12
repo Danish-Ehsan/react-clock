@@ -13,7 +13,7 @@ function App() {
     const [alarmRinging, setAlarmRinging] = useState(false);
 
     //console.log(alarms);
-    console.log("alarmRunning", alarmRinging);
+    //console.log("alarmRunning", alarmRinging);
 
     alarms.forEach((e) => {
         if (
