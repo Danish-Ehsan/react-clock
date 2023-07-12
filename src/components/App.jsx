@@ -19,7 +19,8 @@ function App() {
         if (
             !alarmRinging &&
             e.getHours() === date.getHours() &&
-            e.getMinutes() === date.getMinutes()
+            e.getMinutes() === date.getMinutes() &&
+            e.getSeconds() === date.getSeconds()
         ) {
             setAlarmRinging(true);
         }
