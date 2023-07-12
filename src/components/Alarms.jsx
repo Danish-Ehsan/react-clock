@@ -2,12 +2,24 @@ import { useState } from "react";
 import "styles/Alarm.scss";
 
 export default function Alarms({ alarms, setAlarms }) {
-    const [newAlarm, setNewAlarm] = useState("12:00");
+    const [newAlarmTime, setNewAlarmTime] = useState("12:00");
+    const [newAlarmName, setNewAlarmName] = useState("");
 
-    const alarmsList = alarms.map((date) => {
+    const alarmsList = alarms.map((alarm) => {
         return (
-            <li key={date.toLocaleTimeString()}>
-                {date.toLocaleTimeString([], { timeStyle: "short" })}
+            <li key={alarm.name}>
+                <span>
+                    {alarm.date.toLocaleTimeString([], { timeStyle: "short" })}
+                </span>
+                <span>{alarm.name}</span>
+                <button
+                    className="button--sm button--delete"
+                    onClick={() => {
+                        removeAlarm(alarm.name);
+                    }}
+                >
+                    Delete
+                </button>
             </li>
         );
     });
@@ -19,6 +31,16 @@ export default function Alarms({ alarms, setAlarms }) {
         </div>
     );
 
+    function removeAlarm(alarmName) {
+        const nextAlarms = alarms.filter((alarm) => {
+            if (alarm.name !== alarmName) {
+                return alarm;
+            }
+        });
+
+        setAlarms(nextAlarms);
+    }
+
     //console.log("newalarm", newAlarm);
 
     return (
@@ -28,25 +50,45 @@ export default function Alarms({ alarms, setAlarms }) {
                 onSubmit={(e) => {
                     e.preventDefault();
                     const newAlarmDate = new Date();
-                    const [hours, minutes] = newAlarm.split(":");
+                    const [hours, minutes] = newAlarmTime.split(":");
 
                     newAlarmDate.setHours(hours);
                     newAlarmDate.setMinutes(minutes);
                     newAlarmDate.setSeconds(0);
 
-                    setAlarms([...alarms, newAlarmDate]);
+                    setAlarms([
+                        ...alarms,
+                        { name: newAlarmName, date: newAlarmDate }
+                    ]);
                 }}
             >
                 <h2>Set Alarm</h2>
-                <input
-                    type="time"
-                    value={newAlarm}
-                    onInput={(e) => {
-                        setNewAlarm(e.target.value);
-                    }}
-                    required
-                />
-                <button>Add</button>
+                <div className="alarms__fields-cont">
+                    <label>
+                        <span className="alarms__label-text">Name:</span>
+                        <input
+                            id="name"
+                            type="text"
+                            value={newAlarmName}
+                            onInput={(e) => {
+                                setNewAlarmName(e.target.value);
+                            }}
+                        />
+                    </label>
+                    <label>
+                        <span className="alarms__label-text">Time:</span>
+                        <input
+                            id="time"
+                            type="time"
+                            value={newAlarmTime}
+                            onInput={(e) => {
+                                setNewAlarmTime(e.target.value);
+                            }}
+                            required
+                        />
+                    </label>
+                    <button className="button--sm">Add</button>
+                </div>
             </form>
             {alarms.length > 0 && alarmsListElement}
         </div>

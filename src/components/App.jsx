@@ -15,12 +15,12 @@ function App() {
     //console.log(alarms);
     //console.log("alarmRunning", alarmRinging);
 
-    alarms.forEach((e) => {
+    alarms.forEach((alarm) => {
         if (
             !alarmRinging &&
-            e.getHours() === date.getHours() &&
-            e.getMinutes() === date.getMinutes() &&
-            e.getSeconds() === date.getSeconds()
+            alarm.date.getHours() === date.getHours() &&
+            alarm.date.getMinutes() === date.getMinutes() &&
+            alarm.date.getSeconds() === date.getSeconds()
         ) {
             setAlarmRinging(true);
         }
