@@ -4,8 +4,8 @@ import "styles/Clock.scss";
 export default function Clock({
     date,
     timeHue,
-    alarmRinging,
-    setAlarmRinging
+    activeAlarms,
+    setActiveAlarms
 }) {
     const clockRef = useRef(null);
     const secondsRotations = useRef(0);
@@ -47,13 +47,16 @@ export default function Clock({
     });
 
     return (
-        <div className={alarmRinging ? "clock alarm" : "clock"} ref={clockRef}>
-            {alarmRinging && (
+        <div
+            className={activeAlarms.length ? "clock alarm" : "clock"}
+            ref={clockRef}
+        >
+            {activeAlarms.length > 0 && (
                 <button
                     className="clock__snooze"
                     onClick={() => {
                         console.log("snoozing");
-                        setAlarmRinging(false);
+                        setActiveAlarms([]);
                     }}
                 >
                     Dismiss

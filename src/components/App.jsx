@@ -9,19 +9,18 @@ function App() {
     const timeInterval = useRef(null);
     const timeHue = date.getSeconds() * (360 / 60);
     const [alarms, setAlarms] = useState([]);
-    const [alarmRinging, setAlarmRinging] = useState(false);
+    const [activeAlarms, setActiveAlarms] = useState([]);
 
-    //console.log(alarms);
-    //console.log("alarmRunning", alarmRinging);
+    //console.log(activeAlarms);
 
     alarms.forEach((alarm) => {
         if (
-            !alarmRinging &&
+            !activeAlarms.includes(alarm) &&
             alarm.date.getHours() === date.getHours() &&
             alarm.date.getMinutes() === date.getMinutes() &&
             alarm.date.getSeconds() === date.getSeconds()
         ) {
-            setAlarmRinging(true);
+            setActiveAlarms([...activeAlarms, alarm]);
         }
     });
 
@@ -44,8 +43,8 @@ function App() {
             <Clock
                 date={date}
                 timeHue={timeHue}
-                alarmRinging={alarmRinging}
-                setAlarmRinging={setAlarmRinging}
+                activeAlarms={activeAlarms}
+                setActiveAlarms={setActiveAlarms}
             />
             <h2 style={{ color: `hsl(${timeHue}, 30%, 60%)` }}>
                 Time: {date.toLocaleTimeString()}

@@ -1,7 +1,6 @@
 .alarms__cont {
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     margin: 25px 0;
 }
@@ -11,18 +10,23 @@
     flex-direction: column;
     align-items: center;
 
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     padding: 25px;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
 
-    h2 {
-        font-size: 20px;
-        margin: 0 0 20px;
+    input {
+        padding: 5px 10px;
+        border: none;
+        background: #1a1a1a;
     }
 
-    input {
-        padding: 5px;
+    input[type="text"] {
+        height: 100%;
+    }
+
+    input[type="time"] {
+        width: 120px;
     }
 }
 
@@ -44,5 +48,15 @@
         display: flex;
         align-items: center;
         column-gap: 30px;
+    }
+}
+
+.alarms__table {
+    width: 100%;
+    border-spacing: 2px 6px;
+
+    td {
+        background: #1a1a1a;
+        padding: 5px 10px;
     }
 }

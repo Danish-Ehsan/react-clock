@@ -1,33 +1,36 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "styles/Alarm.scss";
 
 export default function Alarms({ alarms, setAlarms }) {
     const [newAlarmTime, setNewAlarmTime] = useState("12:00");
     const [newAlarmName, setNewAlarmName] = useState("");
+    const alarmNameRef = useRef(null);
 
     const alarmsList = alarms.map((alarm) => {
         return (
-            <li key={alarm.name}>
-                <span>
+            <tr key={alarm.name}>
+                <td>
                     {alarm.date.toLocaleTimeString([], { timeStyle: "short" })}
-                </span>
-                <span>{alarm.name}</span>
-                <button
-                    className="button--sm button--delete"
-                    onClick={() => {
-                        removeAlarm(alarm.name);
-                    }}
-                >
-                    Delete
-                </button>
-            </li>
+                </td>
+                <td>{alarm.name}</td>
+                <td>
+                    <button
+                        className="button--sm button--delete"
+                        onClick={() => {
+                            removeAlarm(alarm.name);
+                        }}
+                    >
+                        Delete
+                    </button>
+                </td>
+            </tr>
         );
     });
 
     const alarmsListElement = (
         <div className="alarms__list-cont">
-            <h2>Alarms</h2>
-            <ul className="alarms__list">{alarmsList}</ul>
+            <h2 className="heading--sm">Alarms</h2>
+            <table className="alarms__table">{alarmsList}</table>
         </div>
     );
 
@@ -41,6 +44,19 @@ export default function Alarms({ alarms, setAlarms }) {
         setAlarms(nextAlarms);
     }
 
+    function alarmNameExists(alarms, alarmName) {
+        console.log("alarmNameExists firing");
+        let nameCheck = false;
+
+        alarms.forEach((alarm) => {
+            if (alarm.name === alarmName) {
+                nameCheck = true;
+            }
+        });
+
+        return nameCheck;
+    }
+
     //console.log("newalarm", newAlarm);
 
     return (
@@ -49,6 +65,17 @@ export default function Alarms({ alarms, setAlarms }) {
                 className="alarms__set"
                 onSubmit={(e) => {
                     e.preventDefault();
+
+                    if (alarmNameExists(alarms, newAlarmName)) {
+                        alarmNameRef.current.setCustomValidity(
+                            "This name already exists"
+                        );
+
+                        alarmNameRef.current.reportValidity();
+
+                        return;
+                    }
+
                     const newAlarmDate = new Date();
                     const [hours, minutes] = newAlarmTime.split(":");
 
@@ -56,13 +83,17 @@ export default function Alarms({ alarms, setAlarms }) {
                     newAlarmDate.setMinutes(minutes);
                     newAlarmDate.setSeconds(0);
 
+                    console.log("setting Alarms");
+
                     setAlarms([
                         ...alarms,
                         { name: newAlarmName, date: newAlarmDate }
                     ]);
+
+                    setNewAlarmName("");
                 }}
             >
-                <h2>Set Alarm</h2>
+                <h2 className="heading--sm">Set Alarm</h2>
                 <div className="alarms__fields-cont">
                     <label>
                         <span className="alarms__label-text">Name:</span>
@@ -70,9 +101,12 @@ export default function Alarms({ alarms, setAlarms }) {
                             id="name"
                             type="text"
                             value={newAlarmName}
+                            ref={alarmNameRef}
                             onInput={(e) => {
                                 setNewAlarmName(e.target.value);
+                                e.target.setCustomValidity("");
                             }}
+                            required
                         />
                     </label>
                     <label>
