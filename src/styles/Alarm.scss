@@ -40,17 +40,6 @@
     font-weight: bold;
 }
 
-.alarms__list {
-    margin: 0;
-    padding: 0;
-
-    li {
-        display: flex;
-        align-items: center;
-        column-gap: 30px;
-    }
-}
-
 .alarms__table {
     width: 100%;
     border-spacing: 2px 6px;

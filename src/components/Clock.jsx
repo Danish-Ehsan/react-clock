@@ -46,22 +46,38 @@ export default function Clock({
         }
     });
 
+    const alarmDisplay = (
+        <div className="clock__alarm">
+            <div className="clock__alarm__title">
+                {activeAlarms.length > 1 ? "Alarms:" : "Alarm:"}
+            </div>
+            <ul className="clock__alarm__list">
+                {activeAlarms.map((alarm) => {
+                    return <li>{alarm.name}</li>;
+                })}
+            </ul>
+        </div>
+    );
+
+    const dismissButton = (
+        <button
+            className="clock__snooze"
+            onClick={() => {
+                console.log("snoozing");
+                setActiveAlarms([]);
+            }}
+        >
+            Dismiss
+        </button>
+    );
+
     return (
         <div
             className={activeAlarms.length ? "clock alarm" : "clock"}
             ref={clockRef}
         >
-            {activeAlarms.length > 0 && (
-                <button
-                    className="clock__snooze"
-                    onClick={() => {
-                        console.log("snoozing");
-                        setActiveAlarms([]);
-                    }}
-                >
-                    Dismiss
-                </button>
-            )}
+            {activeAlarms.length > 0 && alarmDisplay}
+            {activeAlarms.length > 0 && dismissButton}
             <div
                 className="clock__hours"
                 style={{ transform: `translateY(-40%) rotate(${hoursDeg}deg)` }}
