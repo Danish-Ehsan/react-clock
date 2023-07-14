@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import AlarmRow from "components/AlarmRow";
 import "styles/Alarm.scss";
 
 export default function Alarms({ alarms, setAlarms }) {
@@ -7,30 +8,15 @@ export default function Alarms({ alarms, setAlarms }) {
     const alarmNameRef = useRef(null);
 
     const alarmsList = alarms.map((alarm) => {
-        return (
-            <tr key={alarm.name}>
-                <td>
-                    {alarm.date.toLocaleTimeString([], { timeStyle: "short" })}
-                </td>
-                <td>{alarm.name}</td>
-                <td>
-                    <button
-                        className="button--sm button--delete"
-                        onClick={() => {
-                            removeAlarm(alarm.name);
-                        }}
-                    >
-                        Delete
-                    </button>
-                </td>
-            </tr>
-        );
+        return <AlarmRow key={alarm.name} alarm={alarm} />;
     });
 
     const alarmsListElement = (
         <div className="alarms__list-cont">
             <h2 className="heading--sm">Alarms</h2>
-            <table className="alarms__table">{alarmsList}</table>
+            <table className="alarms__table">
+                <tbody>{alarmsList}</tbody>
+            </table>
         </div>
     );
 
@@ -72,7 +58,6 @@ export default function Alarms({ alarms, setAlarms }) {
                         );
 
                         alarmNameRef.current.reportValidity();
-
                         return;
                     }
 
