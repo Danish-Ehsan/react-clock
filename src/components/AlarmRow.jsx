@@ -51,7 +51,10 @@ export default function AlarmRow({
                     className="button--sm button--edit"
                     onClick={() => {
                         if (isEditing) {
-                            if (checkAlarmExists(newAlarmName)) {
+                            if (
+                                alarm.name !== newAlarmName &&
+                                checkAlarmExists(newAlarmName)
+                            ) {
                                 newAlarmNameRef.current.setCustomValidity(
                                     "This name already exists"
                                 );
