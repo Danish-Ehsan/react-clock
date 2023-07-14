@@ -63,8 +63,16 @@ button {
         text-transform: uppercase;
     }
 
+    &.button--add {
+        background: #2a6123;
+    }
+
     &.button--delete {
         background: #612323;
+    }
+
+    &.button--edit {
+        background: #4a4a4a;
     }
 
     &:hover {

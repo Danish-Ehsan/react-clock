@@ -18,7 +18,7 @@ export default function Alarms({ alarms, setAlarms }) {
         alarmNameRef.current.setCustomValidity("");
     }
 
-    function checkAlarmExists(alarms, alarmName) {
+    function checkAlarmExists(alarmName) {
         let nameCheck = false;
 
         alarms.forEach((alarm) => {
@@ -30,12 +30,26 @@ export default function Alarms({ alarms, setAlarms }) {
         return nameCheck;
     }
 
+    function updateAlarm(alarmName, newAlarm) {
+        const newAlarms = alarms.map((alarm) => {
+            if (alarm.name !== alarmName) {
+                return alarm;
+            } else {
+                return newAlarm;
+            }
+        });
+
+        setAlarms(newAlarms);
+    }
+
     const alarmsList = alarms.map((alarm) => {
         return (
             <AlarmRow
                 key={alarm.name}
                 alarm={alarm}
                 removeAlarm={removeAlarm}
+                updateAlarm={updateAlarm}
+                checkAlarmExists={checkAlarmExists}
             />
         );
     });
@@ -58,7 +72,7 @@ export default function Alarms({ alarms, setAlarms }) {
                 onSubmit={(e) => {
                     e.preventDefault();
 
-                    if (checkAlarmExists(alarms, newAlarmName)) {
+                    if (checkAlarmExists(newAlarmName)) {
                         alarmNameRef.current.setCustomValidity(
                             "This name already exists"
                         );

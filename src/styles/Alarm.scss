@@ -48,4 +48,10 @@
         background: #1a1a1a;
         padding: 5px 10px;
     }
+
+    td:last-of-type {
+        display: flex;
+        justify-content: center;
+        column-gap: 6px;
+    }
 }
