@@ -15,6 +15,7 @@ export default function Alarms({ alarms, setAlarms }) {
         });
 
         setAlarms(nextAlarms);
+        alarmNameRef.current.setCustomValidity("");
     }
 
     function checkAlarmExists(alarms, alarmName) {
