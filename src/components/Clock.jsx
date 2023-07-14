@@ -53,7 +53,7 @@ export default function Clock({
             </div>
             <ul className="clock__alarm__list">
                 {activeAlarms.map((alarm) => {
-                    return <li>{alarm.name}</li>;
+                    return <li key={alarm.name}>{alarm.name}</li>;
                 })}
             </ul>
         </div>
