@@ -22,7 +22,7 @@ export default function Alarms({ alarms, setAlarms }) {
         let nameCheck = false;
 
         alarms.forEach((alarm) => {
-            if (alarm.name === alarmName) {
+            if (alarm.name.toLowerCase() === alarmName.toLowerCase()) {
                 nameCheck = true;
             }
         });
