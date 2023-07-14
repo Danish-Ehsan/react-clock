@@ -31,7 +31,13 @@ export default function Alarms({ alarms, setAlarms }) {
     }
 
     const alarmsList = alarms.map((alarm) => {
-        return <AlarmRow key={alarm.name} alarm={alarm} />;
+        return (
+            <AlarmRow
+                key={alarm.name}
+                alarm={alarm}
+                removeAlarm={removeAlarm}
+            />
+        );
     });
 
     const alarmsListElement = (

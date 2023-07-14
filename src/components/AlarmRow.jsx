@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AlarmRow({ alarm }) {
+export default function AlarmRow({ alarm, removeAlarm }) {
     const [isEditing, setIsEditing] = useState(false);
 
     return (
@@ -13,7 +13,6 @@ export default function AlarmRow({ alarm }) {
                     className="button--sm button--delete"
                     onClick={() => {
                         removeAlarm(alarm.name);
-                        alarmNameRef.current.setCustomValidity("");
                     }}
                 >
                     Delete
