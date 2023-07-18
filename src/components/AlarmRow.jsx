@@ -52,7 +52,8 @@ export default function AlarmRow({
                     onClick={() => {
                         if (isEditing) {
                             if (
-                                alarm.name !== newAlarmName &&
+                                alarm.name.toLowerCase() !==
+                                    newAlarmName.toLowerCase() &&
                                 checkAlarmExists(newAlarmName)
                             ) {
                                 newAlarmNameRef.current.setCustomValidity(
