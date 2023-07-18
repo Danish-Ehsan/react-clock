@@ -12,8 +12,14 @@ function App() {
     const [activeAlarms, setActiveAlarms] = useState([]);
 
     //console.log(activeAlarms);
+    //console.log(alarms);
 
     alarms.forEach((alarm) => {
+        //If alarms is added from local storage it will be a string and needs to be converted to a date object
+        if (typeof alarm.date === "string") {
+            alarm.date = new Date(alarm.date);
+        }
+
         if (
             !activeAlarms.includes(alarm) &&
             alarm.date.getHours() === date.getHours() &&
@@ -37,6 +43,15 @@ function App() {
             clearInterval(timeInterval.current);
         };
     }, [timeRunning]);
+
+    useEffect(() => {
+        console.log("localstorage effect running");
+        console.log(JSON.parse(localStorage.alarms));
+        if (localStorage.alarms) {
+            console.log("setting alarms from local storage");
+            setAlarms(JSON.parse(localStorage.alarms));
+        }
+    }, []);
 
     return (
         <>

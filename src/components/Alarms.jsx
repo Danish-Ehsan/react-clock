@@ -16,6 +16,8 @@ export default function Alarms({ alarms, setAlarms }) {
 
         setAlarms(nextAlarms);
         alarmNameRef.current.setCustomValidity("");
+
+        localStorage.alarms = JSON.stringify(nextAlarms);
     }
 
     function checkAlarmExists(alarmName) {
@@ -31,7 +33,7 @@ export default function Alarms({ alarms, setAlarms }) {
     }
 
     function updateAlarm(alarmName, newAlarm) {
-        const newAlarms = alarms.map((alarm) => {
+        const nextAlarms = alarms.map((alarm) => {
             if (alarm.name !== alarmName) {
                 return alarm;
             } else {
@@ -39,7 +41,9 @@ export default function Alarms({ alarms, setAlarms }) {
             }
         });
 
-        setAlarms(newAlarms);
+        setAlarms(nextAlarms);
+
+        localStorage.alarms = JSON.stringify(nextAlarms);
     }
 
     const alarmsList = alarms.map((alarm) => {
@@ -90,10 +94,14 @@ export default function Alarms({ alarms, setAlarms }) {
 
                     console.log("setting Alarms");
 
-                    setAlarms([
+                    const nextAlarms = [
                         ...alarms,
                         { name: newAlarmName, date: newAlarmDate }
-                    ]);
+                    ];
+
+                    setAlarms(nextAlarms);
+
+                    localStorage.alarms = JSON.stringify(nextAlarms);
 
                     setNewAlarmName("");
                 }}
