@@ -46,8 +46,8 @@ function App() {
 
     useEffect(() => {
         console.log("localstorage effect running");
-        console.log(JSON.parse(localStorage.alarms));
         if (localStorage.alarms) {
+            console.log(JSON.parse(localStorage.alarms));
             console.log("setting alarms from local storage");
             setAlarms(JSON.parse(localStorage.alarms));
         }
