@@ -63,7 +63,6 @@ export default function Clock({
         <button
             className="clock__snooze"
             onClick={() => {
-                console.log("snoozing");
                 setActiveAlarms([]);
             }}
         >

@@ -11,9 +11,6 @@ function App() {
     const [alarms, setAlarms] = useState([]);
     const [activeAlarms, setActiveAlarms] = useState([]);
 
-    //console.log(activeAlarms);
-    //console.log(alarms);
-
     alarms.forEach((alarm) => {
         //If alarms is added from local storage it will be a string and needs to be converted to a date object
         if (typeof alarm.date === "string") {
@@ -31,8 +28,6 @@ function App() {
     });
 
     useEffect(() => {
-        console.log("effect running");
-
         if (timeRunning) {
             timeInterval.current = setInterval(() => {
                 setDate(new Date());
@@ -45,10 +40,7 @@ function App() {
     }, [timeRunning]);
 
     useEffect(() => {
-        console.log("localstorage effect running");
         if (localStorage.alarms) {
-            console.log(JSON.parse(localStorage.alarms));
-            console.log("setting alarms from local storage");
             setAlarms(JSON.parse(localStorage.alarms));
         }
     }, []);
@@ -67,8 +59,6 @@ function App() {
             <button
                 style={{ marginTop: "10px" }}
                 onClick={() => {
-                    console.log("stop time");
-                    console.log(timeInterval.current);
                     setTimeRunning(false);
                 }}
             >

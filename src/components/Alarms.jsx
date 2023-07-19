@@ -67,8 +67,6 @@ export default function Alarms({ alarms, setAlarms }) {
         </div>
     );
 
-    //console.log("newalarm", newAlarm);
-
     return (
         <div className="alarms__cont">
             <form
@@ -91,8 +89,6 @@ export default function Alarms({ alarms, setAlarms }) {
                     newAlarmDate.setHours(hours);
                     newAlarmDate.setMinutes(minutes);
                     newAlarmDate.setSeconds(0);
-
-                    console.log("setting Alarms");
 
                     const nextAlarms = [
                         ...alarms,
