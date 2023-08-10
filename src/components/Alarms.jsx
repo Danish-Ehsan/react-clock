@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import AlarmRow from "components/AlarmRow";
+import { motion, AnimatePresence } from "framer-motion";
 import "styles/Alarm.scss";
 
 export default function Alarms({ alarms, setAlarms }) {
@@ -59,12 +60,19 @@ export default function Alarms({ alarms, setAlarms }) {
     });
 
     const alarmsListElement = (
-        <div className="alarms__list-cont">
+        <motion.div
+            key="alarmListElement"
+            className="alarms__list-cont"
+            transition={{ when: "afterChildren" }}
+            exit={{ opacity: 0 }}
+        >
             <h2 className="heading--sm">Alarms</h2>
             <table className="alarms__table">
-                <tbody>{alarmsList}</tbody>
+                <tbody>
+                    <AnimatePresence>{alarmsList}</AnimatePresence>
+                </tbody>
             </table>
-        </div>
+        </motion.div>
     );
 
     return (
@@ -133,7 +141,9 @@ export default function Alarms({ alarms, setAlarms }) {
                     <button className="button--sm">Add</button>
                 </div>
             </form>
-            {alarms.length > 0 && alarmsListElement}
+            <AnimatePresence>
+                {alarms.length > 0 && alarmsListElement}
+            </AnimatePresence>
         </div>
     );
 }

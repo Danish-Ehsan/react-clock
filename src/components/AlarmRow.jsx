@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function AlarmRow({
     alarm,
@@ -14,7 +15,15 @@ export default function AlarmRow({
     const newAlarmNameRef = useRef(null);
 
     return (
-        <tr>
+        <motion.tr
+            initial={{ opacity: 0, x: 50 }}
+            animate={{
+                opacity: 1,
+                x: 0,
+                transition: { type: "easeOut" }
+            }}
+            exit={{ opacity: 0, x: 50 }}
+        >
             <td>
                 {isEditing ? (
                     <input
@@ -90,6 +99,6 @@ export default function AlarmRow({
                     Delete
                 </button>
             </td>
-        </tr>
+        </motion.tr>
     );
 }
