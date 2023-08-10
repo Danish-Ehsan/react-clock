@@ -7,7 +7,6 @@ export default function Clock({
     activeAlarms,
     setActiveAlarms
 }) {
-    const clockRef = useRef(null);
     const secondsRotations = useRef(0);
     const minutesRotations = useRef(0);
     const hoursRotations = useRef(0);
@@ -22,11 +21,6 @@ export default function Clock({
         date.getMinutes() * (360 / (60 * 12));
 
     useEffect(() => {
-        const clockColor = clockRef.current.style.setProperty(
-            "--bg-hue",
-            timeHue
-        );
-
         //When clock needles are completing a full circle, the css rotation degrees need to advance instead of resetting to 0 so the needle doesn't go backwards a full rotation
         //This needs to happen after the render so it doesn't prematurely set the rotation ahead.
         if (date.getSeconds() === 59) {
@@ -73,7 +67,7 @@ export default function Clock({
     return (
         <div
             className={activeAlarms.length ? "clock alarm" : "clock"}
-            ref={clockRef}
+            style={{ "--bg-hue": timeHue }}
         >
             {activeAlarms.length > 0 && alarmDisplay}
             {activeAlarms.length > 0 && dismissButton}
