@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import "styles/Clock.scss";
 
 export default function Clock({
@@ -19,6 +20,8 @@ export default function Clock({
         hoursRotations.current * 720 +
         date.getHours() * (360 / 12) +
         date.getMinutes() * (360 / (60 * 12));
+
+    console.log(date.getSeconds());
 
     useEffect(() => {
         //When clock needles are completing a full circle, the css rotation degrees need to advance instead of resetting to 0 so the needle doesn't go backwards a full rotation
@@ -65,9 +68,12 @@ export default function Clock({
     );
 
     return (
-        <div
+        <motion.div
             className={activeAlarms.length ? "clock alarm" : "clock"}
-            style={{ "--bg-hue": timeHue }}
+            animate={{
+                "--bg-hue": timeHue,
+                transition: { duration: date.getSeconds() === 0 ? 0 : 1 }
+            }}
         >
             {activeAlarms.length > 0 && alarmDisplay}
             {activeAlarms.length > 0 && dismissButton}
@@ -87,6 +93,6 @@ export default function Clock({
                     transform: `translateY(-40%) rotate(${secondsDeg}deg)`
                 }}
             ></div>
-        </div>
+        </motion.div>
     );
 }
