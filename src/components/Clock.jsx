@@ -71,7 +71,10 @@ export default function Clock({
             //if duration is 1 second when seconds reach back to 0 the colors rapidly cycle back to the start
             animate={{
                 "--bg-hue": timeHue,
-                transition: { duration: date.getSeconds() === 0 ? 0 : 1 }
+                transition: {
+                    ease: "linear",
+                    duration: date.getSeconds() === 0 ? 0 : 1
+                }
             }}
         >
             {activeAlarms.length > 0 && alarmDisplay}
