@@ -47,6 +47,14 @@ export default function Alarms({ alarms, setAlarms }) {
         localStorage.alarms = JSON.stringify(nextAlarms);
     }
 
+    const listVariants = {
+        visible: {
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
     const alarmsList = alarms.map((alarm) => {
         return (
             <AlarmRow
@@ -63,7 +71,8 @@ export default function Alarms({ alarms, setAlarms }) {
         <motion.div
             key="alarmListElement"
             className="alarms__list-cont"
-            transition={{ when: "afterChildren" }}
+            variants={listVariants}
+            animate={"visible"}
             exit={{ opacity: 0 }}
         >
             <h2 className="heading--sm">Alarms</h2>

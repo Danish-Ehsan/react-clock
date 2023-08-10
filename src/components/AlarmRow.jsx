@@ -14,14 +14,18 @@ export default function AlarmRow({
     );
     const newAlarmNameRef = useRef(null);
 
+    const itemVariants = {
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: { type: "easeOut" }
+        }
+    };
+
     return (
         <motion.tr
             initial={{ opacity: 0, x: 50 }}
-            animate={{
-                opacity: 1,
-                x: 0,
-                transition: { type: "easeOut" }
-            }}
+            variants={itemVariants}
             exit={{ opacity: 0, x: 50 }}
         >
             <td>
